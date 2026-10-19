@@ -4,14 +4,14 @@
     // Dropdown on mouse hover
     $(document).ready(function () {
         function toggleNavbarMethod() {
+            // Unbind first so repeated resize events don't stack handlers
+            var $dropdowns = $('.navbar .dropdown').off('mouseover.navHover mouseout.navHover');
             if ($(window).width() > 992) {
-                $('.navbar .dropdown').on('mouseover', function () {
+                $dropdowns.on('mouseover.navHover', function () {
                     $('.dropdown-toggle', this).trigger('click');
-                }).on('mouseout', function () {
+                }).on('mouseout.navHover', function () {
                     $('.dropdown-toggle', this).trigger('click').blur();
                 });
-            } else {
-                $('.navbar .dropdown').off('mouseover').off('mouseout');
             }
         }
         toggleNavbarMethod();
